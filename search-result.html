@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/images/logo.png" alt="eCommerce Logo" />
+            </a>
+        </div>
+    </header>
+
+    <section class="container">
+        <h2>Search Results</h2>
+        <div id="searchResults" class="product-list"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 eCommerce. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const searchResultsDiv = document.getElementById('searchResults');
+        const searchResults = JSON.parse(localStorage.getItem('searchResults')) || [];
+
+        if (searchResults.length > 0) {
+            searchResults.forEach((product) => {
+                const productDiv = document.createElement('div');
+                productDiv.className = 'product';
+                productDiv.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>${product.description}</p>
+                    <p>Price: $${product.amount}</p>
+                `;
+                searchResultsDiv.appendChild(productDiv);
+            });
+        } else {
+            searchResultsDiv.innerHTML = "<p>No results found.</p>";
+        }
+    </script>
+</body>
+</html>

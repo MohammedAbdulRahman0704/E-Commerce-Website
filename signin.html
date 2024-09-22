@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eCommerce - Sign In</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/images/logo.png" alt="eCommerce Logo" />
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#products">Products</a></li>
+                <li><a href="index.html#about">About Us</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="signin.html">Sign In</a></li>
+                <li><a href="signup.html">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="container">
+        <h2>Sign In to Your Account</h2>
+        <form id="signinForm" action="#" method="post">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required><br>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required><br>
+
+            <button type="submit" class="button">Sign In</button>
+        </form>
+        <p>Don't have an account? <a href="signup.html">Sign Up here</a>.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 eCommerce. All rights reserved.</p>
+    </footer>
+
+    <script src="assets/js/form.js"></script>
+</body>
+</html>

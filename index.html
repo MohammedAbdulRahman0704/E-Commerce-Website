@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eCommerce Website</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+    <!-- Header and Navigation -->
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/images/logo.png" alt="eCommerce Logo" />
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="signin.html">Sign In</a></li>
+                <li><a href="signup.html">Sign Up</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Search Section -->
+    <section id="search" class="container">
+        <h2>Search for Products</h2>
+        <input type="text" id="searchInput" placeholder="Search for products..." />
+        <button onclick="searchProducts()">Search</button>
+    </section>
+
+    <!-- Home Section -->
+    <section id="home" class="container">
+        <h2>Welcome to Our eCommerce Platform</h2>
+        <p>Discover a wide variety of products tailored to your needs. Sign up now to explore more!</p>
+        <button class="button">Shop Now</button>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="container">
+        <h2>Our Products</h2>
+        <div class="product-list" id="productList"></div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="container">
+        <h2>About Us</h2>
+        <p>We are a dedicated eCommerce platform, providing a variety of products for our customers. Our mission is to offer high-quality products at affordable prices. We believe in customer satisfaction and work towards building long-term relationships with our users.</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container">
+        <h2>Contact Us</h2>
+        <form id="contactForm" action="#">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required><br>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required><br>
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea><br>
+
+            <button type="submit" class="button">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 eCommerce. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/form.js"></script>
+    <script src="assets/js/scroll.js"></script>
+    <script>
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const products = [
+            { name: "Shirt", description: "Size: M, Color: Blue", amount: 25, image: "assets/images/shirt.jpg" },
+            { name: "Pants", description: "Size: L, Color: Black", amount: 40, image: "assets/images/pants.jpg" },
+            { name: "Underwear", description: "Size: M, Color: White", amount: 10, image: "assets/images/underwear.jpg" },
+            { name: "Skirt", description: "Size: S, Color: Red", amount: 30, image: "assets/images/skirt.jpg" },
+            { name: "Chair", description: "Material: Wood, Color: Brown", amount: 100, image: "assets/images/chair.jpg" },
+            { name: "Cooking Utensils Set", description: "Includes: Spoon, Spatula, Tongs", amount: 15, image: "assets/images/cooking_utensils.jpg" },
+            { name: "T-Shirt", description: "Size: L, Color: Green", amount: 20, image: "assets/images/tshirt.jpg" },
+            { name: "Dress", description: "Size: M, Color: Black", amount: 50, image: "assets/images/dress.jpg" },
+            { name: "Jeans", description: "Size: 32, Color: Dark Blue", amount: 45, image: "assets/images/jeans.jpg" },
+            { name: "Sneakers", description: "Size: 10, Color: White", amount: 60, image: "assets/images/sneakers.jpg" },
+            { name: "Blazer", description: "Size: L, Color: Grey", amount: 80, image: "assets/images/blazer.jpg" },
+            { name: "Hat", description: "Size: One Size, Color: Black", amount: 15, image: "assets/images/hat.jpg" },
+            { name: "Cutting Board", description: "Material: Bamboo, Size: Large", amount: 25, image: "assets/images/cutting_board.jpg" },
+            { name: "Frying Pan", description: "Material: Non-stick, Size: 28 cm", amount: 35, image: "assets/images/frying_pan.jpg" },
+            { name: "Measuring Cups", description: "Set of 4, Material: Plastic", amount: 10, image: "assets/images/measuring_cups.jpg" }
+        ];
+
+        const productListDiv = document.getElementById('productList');
+
+        function displayProducts() {
+            productListDiv.innerHTML = '';  // Clear any previous content
+            products.forEach((product, index) => {
+                const productDiv = document.createElement('div');
+                productDiv.className = 'product';
+                productDiv.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>${product.description}</p>
+                    <p>Price: $${product.amount}</p>
+                    <button class="button" onclick="addToCart(${index})">Add to Cart</button>
+                `;
+                productListDiv.appendChild(productDiv);
+            });
+        }
+
+        function addToCart(index) {
+            const product = products[index];
+            cart.push(product);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(`${product.name} has been added to your cart!`);
+        }
+
+        function searchProducts() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchInput));
+
+            if (filteredProducts.length > 0) {
+                localStorage.setItem('searchResults', JSON.stringify(filteredProducts));
+                window.location.href = "search-result.html";
+            } else {
+                alert("No products found!");
+            }
+        }
+
+        // Display products on load
+        document.addEventListener('DOMContentLoaded', displayProducts);
+    </script>
+</body>
+</html>
