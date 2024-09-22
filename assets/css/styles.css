@@ -242,3 +242,53 @@ footer {
 footer:hover {
     background-color: #34495e; /* Lighter blue-grey */
 }
+
+/* Cart and Billing Item Styles */
+.cart-item, .billing-item {
+    background-color: #ffffff; /* White background for items */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.cart-item:hover, .billing-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.cart-item img, .billing-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.cart-item h3, .billing-item h3 {
+    margin: 10px 0;
+    color: #2980b9; /* Bright blue */
+}
+
+.cart-item p, .billing-item p {
+    margin: 5px 0;
+    color: #7f8c8d; /* Grey */
+}
+
+/* Button Styles for Cart */
+.cart-item button {
+    background-color: transparent; /* Transparent background */
+    border: none;
+    cursor: pointer;
+}
+
+.cart-item .bin-icon {
+    width: 20px; /* Adjust icon size */
+    height: 20px;
+    transition: filter 0.3s ease;
+}
+
+.cart-item .bin-icon:hover {
+    filter: brightness(0.8); /* Darken icon on hover */
+}
